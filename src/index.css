@@ -64,3 +64,22 @@ h6 {
 #__next {
   isolation: isolate;
 }
+
+/*
+---------------------------
+
+  9. Form styling
+*/
+
+.colorform {
+  padding: 20px 0;
+}
+.colorform label {
+  display: block;
+}
+
+.colorform button {
+  display: block;
+  margin: 20px 0 0;
+  text-transform: uppercase;
+}
