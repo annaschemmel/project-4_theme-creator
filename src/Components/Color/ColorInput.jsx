@@ -5,7 +5,12 @@ export default function ColorInput({ name, defaultValue }) {
 
   return (
     <>
-      <input type="text" name={name} value={color} />
+      <input
+        type="text"
+        name={name}
+        value={color}
+        onChange={(e) => setColor(e.target.value)}
+      />
       <input
         type="color"
         name={name}

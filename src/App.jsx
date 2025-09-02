@@ -3,6 +3,7 @@ import { initialColors } from "./lib/colors";
 import Color from "./Components/Color/Color";
 import Colorform from "./Components/Color/ColorForm";
 import "./App.css";
+import { uid } from "uid";
 
 function App() {
   // colors.js (array initial colors) is what is being mapped here
@@ -18,7 +19,7 @@ function App() {
 
   function addNewColor(newColor) {
     console.log("new color that's added", newColor);
-    setColors([newColor, ...colors]);
+    setColors([{ id: uid(), ...newColor }, ...colors]);
   }
 
   return (
