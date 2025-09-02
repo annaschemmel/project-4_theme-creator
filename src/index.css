@@ -81,5 +81,12 @@ h6 {
 .colorform button {
   display: block;
   margin: 20px 0 0;
+}
+
+/*
+  10. Default button styling
+*/
+
+button {
   text-transform: uppercase;
 }
