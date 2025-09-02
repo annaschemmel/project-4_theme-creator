@@ -7,7 +7,8 @@ import { uid } from "uid";
 
 function App() {
   const [colors, setColors] = useState(initialColors);
-  console.log(colors.role);
+  //console.log("colors: ", colors);
+  //console.log(colors.map((color) => console.log(color.id)));
 
   // ADD NEW COLOR
   // --------------
@@ -29,8 +30,8 @@ function App() {
   //-------------
   // create a new button with a handler function (delete button)
 
-  function handleDeleteColor() {
-    console.log();
+  function handleDeleteColor(deleteID) {
+    setColors(colors.filter((color) => color.id != deleteID));
   }
 
   // RETURN
