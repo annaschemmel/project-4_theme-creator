@@ -1,7 +1,7 @@
-import { createElement, useState } from "react";
-import Color from "./Color";
+import { useState } from "react";
+//import Color from "./Color";
 
-export default function Colorform() {
+export default function Colorform({ onAddColor }) {
   function handleSubmit(event) {
     event.preventDefault();
     console.log("submitted form");
@@ -9,21 +9,13 @@ export default function Colorform() {
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
-    console.log(data);
+    onAddColor(data);
 
-    // ---> should this whole "create card" be in a different document and not in the "ColorForm"?
-    // ---> uid? -> should the package be added/imported int the Color.jsx and then added to the Color.jsx?
-    // ---> how do we append the new card to the top of the card list / after the form (there's no "card-list", the cards come directly after the form)
-
-    //console.log(`${createElement(<Color color={data} />)}`);
-    document.body.append(`${createElement(<Color color={data} />)}`); //currently only returns [object Object]
-
-    // ---> currently only resetting the text input field -> should I
+    //console.log(data);
     event.target.reset();
   }
 
   const [colorHex, setColorHex] = useState("#f43497");
-  //console.log(colorHex);
   const [contrastText, setContrastText] = useState("#140f45");
 
   return (
