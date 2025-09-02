@@ -27,21 +27,24 @@ function App() {
   }
 
   // DELETE A COLOR
-  //-------------
-  // create a new button with a handler function (delete button)
+  // -------------
 
   function handleDeleteColor(deleteID) {
     setColors(colors.filter((color) => color.id != deleteID));
   }
 
-  // RETURN
-  //-------------
+  // SHOW MESSAGE TO ADD COLOURS WHEN LIST IS EMPTY
+  // -------------
 
+  // return function
+  //-------------
   return (
     <>
       <h1>Theme Creator</h1>
       <Colorform onAddColor={handleAddColor} />
-
+      {colors.length == 0 && (
+        <p className="color-card-headline">Add more colors</p>
+      )}
       {colors.map((color) => {
         return (
           <Color
