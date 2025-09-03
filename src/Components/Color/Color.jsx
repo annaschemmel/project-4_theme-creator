@@ -47,6 +47,11 @@ export default function Color({ color, onDeleteColor, onSubmitColor, id }) {
             onSubmitColor={(updatedData) =>
               onSubmitColor({ id, ...updatedData })
             }
+            //onSubmitColor is the prop that we give this form from App
+            //updatedData is the stuff that the form gives us when submitting it
+            //onSubmitColor is the handlerfunction(handleEditColor) that was assigned to this prop
+            //the spread here add the 3 attributes from the form (role,hex,contrast) to the id (wee need all 4 of them)
+            //these 4 things are then given back to App
           />
           <button onClick={() => setIsVisible("default")}>Cancel</button>
         </>
