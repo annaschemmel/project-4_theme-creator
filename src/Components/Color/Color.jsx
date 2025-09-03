@@ -44,9 +44,10 @@ export default function Color({ color, onDeleteColor, onSubmitColor, id }) {
           <Colorform
             defaultValue={color}
             buttonText={"Update Color"}
-            onSubmitColor={(updatedData) =>
-              onSubmitColor({ id, ...updatedData })
-            }
+            onSubmitColor={(updatedData) => {
+              onSubmitColor({ id, ...updatedData });
+              setIsVisible("default");
+            }}
             //onSubmitColor is the prop that we give this form from App
             //updatedData is the stuff that the form gives us when submitting it
             //onSubmitColor is the handlerfunction(handleEditColor) that was assigned to this prop
