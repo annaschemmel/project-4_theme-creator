@@ -3,8 +3,9 @@ import ColorInput from "./ColorInput";
 //import Color from "./Color";
 
 export default function Colorform({
-  onAddColor,
+  onSubmitColor,
   defaultValue = { hex: "#cf3a3a", contrastText: "#2743e4" },
+  buttonText,
 }) {
   function handleSubmit(event) {
     event.preventDefault();
@@ -13,7 +14,7 @@ export default function Colorform({
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
-    onAddColor(data);
+    onSubmitColor(data);
 
     //console.log(data);
     event.target.reset();
@@ -22,7 +23,12 @@ export default function Colorform({
   return (
     <form className="colorform" onSubmit={handleSubmit}>
       <label htmlFor="role">Role</label>
-      <input type="text" name="role" required />
+      <input
+        type="text"
+        name="role"
+        defaultValue={defaultValue.role}
+        required
+      />
 
       <label htmlFor="hex">Hex</label>
       <ColorInput name="hex" defaultValue={defaultValue.hex} />
@@ -33,7 +39,7 @@ export default function Colorform({
         defaultValue={defaultValue.contrastText}
       />
 
-      <button type="submit">Add color</button>
+      <button type="submit">{buttonText}</button>
     </form>
   );
 }

@@ -33,28 +33,40 @@ function App() {
     setColors(colors.filter((color) => color.id != deleteID));
   }
 
+  // EDIT A COLOR
+  // -------------
+  // to do:
+  // function to appy the new values to the card
+
+  function handleEditColor(changeColor) {
+    setColors(
+      colors.map((color) =>
+        color.id === changeColor.id ? { ...color, ...changeColor } : color
+      )
+    );
+  }
+
   // return function
   //-------------
   return (
     <>
       <h1>Theme Creator</h1>
-      <Colorform onAddColor={handleAddColor} />
+      <Colorform onSubmitColor={handleAddColor} buttonText={"Add Color"} />
       {colors.length == 0 && (
         <p className="color-card-headline">Add more colors</p>
       )}
       {colors.map((color) => {
-        console.log(color);
         return (
           <Color
             key={color.id}
             id={color.id}
             color={color}
             onDeleteColor={handleDeleteColor}
+            onSubmitColor={handleEditColor}
           />
         );
       })}
     </>
   );
 }
-
 export default App;

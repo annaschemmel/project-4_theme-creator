@@ -2,7 +2,7 @@ import "./Color.css";
 import { useState } from "react";
 import Colorform from "./ColorForm";
 
-export default function Color({ color, onDeleteColor, id }) {
+export default function Color({ color, onDeleteColor, onSubmitColor, id }) {
   //console.log("Find Issue 1");
   const [isVisible, setIsVisible] = useState("default");
   console.log(isVisible);
@@ -41,7 +41,13 @@ export default function Color({ color, onDeleteColor, id }) {
 
       {isVisible === "edit" && (
         <>
-          <Colorform defaultValue={color} />
+          <Colorform
+            defaultValue={color}
+            buttonText={"Update Color"}
+            onSubmitColor={(updatedData) =>
+              onSubmitColor({ id, ...updatedData })
+            }
+          />
           <button onClick={() => setIsVisible("default")}>Cancel</button>
         </>
       )}
