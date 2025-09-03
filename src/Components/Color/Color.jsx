@@ -1,9 +1,11 @@
 import "./Color.css";
 import { useState } from "react";
+import Colorform from "./ColorForm";
 
 export default function Color({ color, onDeleteColor, id }) {
   //console.log("Find Issue 1");
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState("default");
+  console.log(isVisible);
 
   return (
     <div
@@ -16,17 +18,32 @@ export default function Color({ color, onDeleteColor, id }) {
       <h3 className="color-card-headline">{color.hex}</h3>
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
-      {isVisible && (
-        <button onClick={() => setIsVisible(!isVisible)}>Delete</button>
+
+      {/* we have 3 states here that we want to switch between
+       (default - only infos and buttons, delete - cancel and delete button, edit - input fields and confirm button) */}
+
+      {isVisible === "default" && (
+        <>
+          <button onClick={() => setIsVisible("delete")}>Delete</button>
+          <button onClick={() => setIsVisible("edit")}>Edit</button>
+        </>
       )}
-      {!isVisible && (
-        <div>
+
+      {isVisible === "delete" && (
+        <>
           <p className="color-card-headline">Really delete?</p>
-          <button onClick={() => setIsVisible(!isVisible)}>Cancel</button>
+          <button onClick={() => setIsVisible("default")}>Cancel</button>
           <button title="delete movie" onClick={() => onDeleteColor(id)}>
             Delete
           </button>
-        </div>
+        </>
+      )}
+
+      {isVisible === "edit" && (
+        <>
+          <Colorform defaultValue={color} />
+          <button onClick={() => setIsVisible("default")}>Cancel</button>
+        </>
       )}
     </div>
   );

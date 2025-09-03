@@ -33,9 +33,6 @@ function App() {
     setColors(colors.filter((color) => color.id != deleteID));
   }
 
-  // SHOW MESSAGE TO ADD COLOURS WHEN LIST IS EMPTY
-  // -------------
-
   // return function
   //-------------
   return (
@@ -46,6 +43,7 @@ function App() {
         <p className="color-card-headline">Add more colors</p>
       )}
       {colors.map((color) => {
+        console.log(color);
         return (
           <Color
             key={color.id}
