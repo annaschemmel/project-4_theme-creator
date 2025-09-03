@@ -1,4 +1,5 @@
-import { useState } from "react";
+//import { useState } from "react";
+import useLocalStorageState from "use-local-storage-state";
 import { initialColors } from "./lib/colors";
 import Color from "./Components/Color/Color";
 import Colorform from "./Components/Color/ColorForm";
@@ -6,7 +7,9 @@ import "./App.css";
 import { uid } from "uid";
 
 function App() {
-  const [colors, setColors] = useState(initialColors);
+  const [colors, setColors] = useLocalStorageState("colors", {
+    defaultValue: initialColors,
+  });
   //console.log("colors: ", colors);
   //console.log(colors.map((color) => console.log(color.id)));
 
@@ -35,8 +38,6 @@ function App() {
 
   // EDIT A COLOR
   // -------------
-  // to do:
-  // function to appy the new values to the card
 
   function handleEditColor(changeColor) {
     setColors(
