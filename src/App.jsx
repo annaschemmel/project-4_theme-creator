@@ -33,15 +33,25 @@ function App() {
     setColors(colors.filter((color) => color.id != deleteID));
   }
 
-  // SHOW MESSAGE TO ADD COLOURS WHEN LIST IS EMPTY
+  // EDIT A COLOR
   // -------------
+  // to do:
+  // function to appy the new values to the card
+
+  function handleEditColor(changeColor) {
+    setColors(
+      colors.map((color) =>
+        color.id === changeColor.id ? { ...color, ...changeColor } : color
+      )
+    );
+  }
 
   // return function
   //-------------
   return (
     <>
       <h1>Theme Creator</h1>
-      <Colorform onAddColor={handleAddColor} />
+      <Colorform onSubmitColor={handleAddColor} buttonText={"Add Color"} />
       {colors.length == 0 && (
         <p className="color-card-headline">Add more colors</p>
       )}
@@ -52,11 +62,11 @@ function App() {
             id={color.id}
             color={color}
             onDeleteColor={handleDeleteColor}
+            onSubmitColor={handleEditColor}
           />
         );
       })}
     </>
   );
 }
-
 export default App;
